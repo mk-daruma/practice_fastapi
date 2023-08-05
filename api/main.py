@@ -4,7 +4,7 @@ app = FastAPI()
 
 
 @app.get("/cafe/star-backs")
-async def hello():
+async def star_backs():
     star_backs = Cafe("スターバックス", "フラペチーノ")
     return {
         "message": star_backs.explanation()
@@ -12,7 +12,7 @@ async def hello():
 
 
 @app.get("/cafe/komeda")
-async def hello():
+async def komeda():
     komeda = Cafe("コメダ珈琲", "シロノワール")
     return {
         "message": komeda.explanation()
