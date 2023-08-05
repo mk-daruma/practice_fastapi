@@ -36,9 +36,11 @@ async def repeat():
 
 @app.get("/cafe/komeda")
 async def hello():
-    komeda = Cafe("コメダ珈琲", "シロノワール")
+    komeda = Komeda("コメダ珈琲", "シロノワール", 7, 10)
     return {
-        "message": komeda.explanation()
+        "explanation": komeda.explanation(),
+        "stock": komeda.check_stock(),
+        "info": komeda.stamp_card()
     }
 
 
@@ -80,3 +82,21 @@ class StarBacks(Cafe):
 
         if not self.one_more_coffee:
             return "おかわりは100円でコーヒーが飲める！"
+
+
+class Komeda(Cafe):
+    def __init__(
+            self,
+            name: str,
+            product: str,
+            stock: int,
+            number_of_visits: int
+    ):
+        super().__init__(name, product, stock)
+        self.number_of_visits = number_of_visits
+
+    def stamp_card(self):
+        if self.number_of_visits == 10:
+            return "ミニシロノワールをプレゼント！"
+        if self.number_of_visits < 10:
+            return f"あと{10-self.number_of_visits}回の来店でミニシロノワールをプレゼント！"
