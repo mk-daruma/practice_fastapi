@@ -5,24 +5,13 @@ app = FastAPI()
 
 @app.get("/cafe/star-backs")
 async def star_backs():
-    star_backs = Cafe("スターバックス", "フラペチーノ")
     return {
-        "message": star_backs.explanation()
+        "message": "スターバックスのおすすめ商品はフラペチーノです！"
     }
 
 
 @app.get("/cafe/komeda")
 async def komeda():
-    komeda = Cafe("コメダ珈琲", "シロノワール")
     return {
-        "message": komeda.explanation()
+        "message": "コメダのおすすめ商品はシロノワールです！"
     }
-
-
-class Cafe:
-    def __init__(self, name: str, product: str):
-        self.name = name
-        self.product = product
-
-    def explanation(self):
-        return f"{self.name}のおすすめ商品は{self.product}です！"
